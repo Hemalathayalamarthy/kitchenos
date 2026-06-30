@@ -4,11 +4,17 @@ import { Badge } from '@/components/ui/badge';
 import { Search, AlertCircle, Phone, XCircle, MoreHorizontal } from 'lucide-react';
 
 const INITIAL_MENU = [
-  { id: 1, name: 'Paneer Tikka Platter', brand: 'Biryani Express', status: 'out_of_stock', affectedOrders: 4, lastUpdated: '5m ago' },
-  { id: 2, name: 'Chicken Biryani (L)', brand: 'Biryani Express', status: 'available', affectedOrders: 0, lastUpdated: '1h ago' },
-  { id: 3, name: 'Smash Burger', brand: 'Burger Hub', status: 'running_low', affectedOrders: 0, lastUpdated: '12m ago' },
-  { id: 4, name: 'Loaded Fries', brand: 'Burger Hub', status: 'available', affectedOrders: 0, lastUpdated: '2h ago' },
-  { id: 5, name: 'Quinoa Power Bowl', brand: 'Healthy Bowls', status: 'available', affectedOrders: 0, lastUpdated: '3h ago' },
+  { id: 1, name: 'Paneer Tikka Platter', brand: 'Biryani Express', status: 'out_of_stock', affectedOrders: 0, lastUpdated: '5m ago' },
+  { id: 2, name: 'Tandoori Chicken (Starter)', brand: 'Biryani Express', status: 'available', affectedOrders: 0, lastUpdated: '10m ago' },
+  { id: 3, name: 'Chicken Biryani (L)', brand: 'Biryani Express', status: 'available', affectedOrders: 0, lastUpdated: '1h ago' },
+  { id: 4, name: 'Mutton Biryani', brand: 'Biryani Express', status: 'available', affectedOrders: 0, lastUpdated: '2h ago' },
+  { id: 5, name: 'Kaju Butter Masala', brand: 'Biryani Express', status: 'available', affectedOrders: 0, lastUpdated: '4h ago' },
+  { id: 6, name: 'Raita', brand: 'Biryani Express', status: 'available', affectedOrders: 0, lastUpdated: '1h ago' },
+  { id: 7, name: 'Smash Burger', brand: 'Burger Hub', status: 'running_low', affectedOrders: 0, lastUpdated: '12m ago' },
+  { id: 8, name: 'Truffle Mushroom Burger', brand: 'Burger Hub', status: 'available', affectedOrders: 0, lastUpdated: '45m ago' },
+  { id: 9, name: 'Loaded Fries', brand: 'Burger Hub', status: 'available', affectedOrders: 0, lastUpdated: '2h ago' },
+  { id: 10, name: 'Quinoa Power Bowl', brand: 'Healthy Bowls', status: 'available', affectedOrders: 0, lastUpdated: '3h ago' },
+  { id: 11, name: 'Teriyaki Chicken Bowl', brand: 'Healthy Bowls', status: 'available', affectedOrders: 0, lastUpdated: '1h ago' },
 ];
 
 export const MenuAvailability = () => {
@@ -60,7 +66,6 @@ export const MenuAvailability = () => {
               >
                 {isDisabled ? "Re-enable Listing" : <><XCircle className="w-3.5 h-3.5 mr-1.5 text-red-500" /> Disable on Apps</>}
               </Button>
-              <Button size="sm" className="h-9 bg-slate-800 hover:bg-slate-900 text-white font-semibold text-xs"><Phone className="w-3.5 h-3.5 mr-1.5" /> Call Customers</Button>
             </div>
           ) : (
             <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-slate-600">

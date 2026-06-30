@@ -112,16 +112,15 @@ export const BatchManager = ({ orders = [] }) => {
                 <div className="p-5 pt-0 mt-auto border-t border-slate-100 bg-slate-50/30 flex items-center justify-between">
                   {batch.status === 'cooking' ? (
                     <>
-                      <div className="flex-1 mr-6">
+                      <div className="flex-1">
                         <div className="flex justify-between text-xs font-bold text-slate-500 mb-1.5 uppercase">
-                          <span className="text-blue-600">Cooking</span>
+                          <span className="text-blue-600 flex items-center gap-1.5"><Flame className="w-3.5 h-3.5" /> Cooking In Progress</span>
                           <span>{batch.progress}%</span>
                         </div>
                         <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
-                           <div className="h-full bg-blue-500 rounded-full" style={{ width: `${batch.progress}%` }}></div>
+                           <div className="h-full bg-blue-500 rounded-full transition-all duration-1000" style={{ width: `${batch.progress}%` }}></div>
                         </div>
                       </div>
-                      <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white font-bold"><CheckCircle2 className="w-4 h-4 mr-1.5"/> Mark Ready</Button>
                     </>
                   ) : (
                     <>

@@ -18,27 +18,30 @@ import { MyOrders } from '@/components/operations/MyOrders';
 
 // MOCK DATA
 const INITIAL_ORDERS = [
+  { id: 'SWG-1000', source: 'Swiggy', time: '12m ago', customer_name: 'sanjay', items: [{ id: 1, quantity: 4, name: 'Chicken Biryani (L)', price: 1700, isOOS: false }], notes: '', timeLeft: 800, maxTime: 900, lifecycle: 'Cooking', batchMatch: 'B15' },
   { id: 'DIR-4401', source: 'Direct', time: '1m ago', customer_name: 'hari',   items: [{ id: 5, quantity: 2, name: 'Smash Burger', price: 560, isOOS: false }, { id: 4, quantity: 1, name: 'Loaded Fries', price: 180, isOOS: false }], notes: '', timeLeft: 387, maxTime: 420, lifecycle: 'Incoming', batchMatch: 'G02' },
-  { id: 'ZOM-1182', source: 'Zomato', time: '1m ago', customer_name: 'harika', items: [{ id: 1, quantity: 3, name: 'Chicken Biryani (L)', price: 1250, isOOS: false }, { id: 7, quantity: 3, name: 'Raita', price: 60, isOOS: false }], notes: '', timeLeft: 267, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'B15' },
-  { id: 'SWG-9023', source: 'Swiggy', time: '1m ago', customer_name: 'rahul',  items: [{ id: 1, quantity: 2, name: 'Chicken Biryani (L)', price: 850, isOOS: false }, { id: 7, quantity: 2, name: 'Raita', price: 40, isOOS: false }], notes: '', timeLeft: 255, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'B15' },
+  { id: 'ZOM-1182', source: 'Zomato', time: '1m ago', customer_name: 'harika', items: [{ id: 5, quantity: 3, name: 'Smash Burger', price: 840, isOOS: false }], notes: '', timeLeft: 267, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'G02' },
+  { id: 'SWG-9026', source: 'Swiggy', time: '1m ago', customer_name: 'rahul',  items: [{ id: 5, quantity: 1, name: 'Smash Burger', price: 280, isOOS: false }], notes: '', timeLeft: 255, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'G02' },
   { id: 'ZOM-1183', source: 'Zomato', time: '2m ago', customer_name: 'niharika', items: [{ id: 5, quantity: 2, name: 'Smash Burger', price: 560, isOOS: false }, { id: 4, quantity: 1, name: 'Loaded Fries', price: 180, isOOS: false }], notes: '', timeLeft: 227, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'G02' },
   { id: 'SWG-9022', source: 'Swiggy', time: '2m ago', customer_name: 'amit', items: [{ id: 8, quantity: 1, name: 'Quinoa Power Bowl', price: 280, isOOS: false }], notes: '', timeLeft: 240, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'H01' },
-  { id: 'DIR-4402', source: 'Direct', time: '2m ago', customer_name: 'priya', items: [{ id: 8, quantity: 2, name: 'Quinoa Power Bowl', price: 560, isOOS: false }], notes: '', timeLeft: 240, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'H01' }
+  { id: 'DIR-4402', source: 'Direct', time: '2m ago', customer_name: 'priya', items: [{ id: 8, quantity: 2, name: 'Quinoa Power Bowl', price: 560, isOOS: false }], notes: '', timeLeft: 240, maxTime: 300, lifecycle: 'Incoming', batchMatch: 'H01' },
+  { id: 'ZOM-8811', source: 'Zomato', time: '20m ago', customer_name: 'suresh', items: [{ id: 1, quantity: 1, name: 'Chicken Biryani (L)', price: 425, isOOS: false }], notes: '', timeLeft: 300, maxTime: 300, lifecycle: 'Packed', batchMatch: null },
+  { id: 'DIR-5501', source: 'Direct', time: '22m ago', customer_name: 'anita', items: [{ id: 5, quantity: 2, name: 'Smash Burger', price: 560, isOOS: false }], notes: '', timeLeft: 300, maxTime: 300, lifecycle: 'Ready', batchMatch: null },
+  { id: 'SWG-8860', source: 'Swiggy', time: '25m ago', customer_name: 'vikram', items: [{ id: 8, quantity: 1, name: 'Quinoa Power Bowl', price: 280, isOOS: false }], notes: '', timeLeft: 120, maxTime: 120, lifecycle: 'Packed', batchMatch: null }
 ];
 
 const INITIAL_RECOMMENDED_ACTIONS = [
-  { title: 'Verify Paneer Tikka availability', subtitle: 'Order #SWG-9025 contains OOS item', type: 'urgent' },
-  { title: 'Call Rider for Order #SWG-8820', subtitle: 'Food is packed and cooling', type: 'call' }
+  { title: 'Call Rider for Order #SWG-8860', subtitle: 'Food is packed and cooling', type: 'call' }
 ];
 
 const INITIAL_EXCEPTIONS = [
   { title: 'Cancelled Mid-Cook', status: 'Customer Cancelled', impact: 'Order #DIR-4401', action: 'Stop Cooking - Save Items', type: 'urgent' },
-  { title: 'Paneer Tikka', status: 'Out of Stock', impact: '4 orders affected', action: 'Disable Platform Listing', type: 'ingredient' }
+  { title: 'Paneer Tikka Platter', status: 'Out of Stock', impact: 'Global Inventory', action: 'Disable Platform Listing', type: 'ingredient' }
 ];
 
 const INITIAL_RIDERS = [
-  { name: 'Raju G.', orderId: 'SWG-8820', waitTimeMins: 12 },
-  { name: 'Mohammed K.', orderId: 'ZOM-8821', waitTimeMins: 4 }
+  { name: 'Raju G.', orderId: 'SWG-8860', waitTimeMins: 12 },
+  { name: 'Mohammed K.', orderId: 'ZOM-8811', waitTimeMins: 4 }
 ];
 
 const OperationsCommandCenter = () => {
@@ -48,7 +51,7 @@ const OperationsCommandCenter = () => {
   const [selectedReplacement, setSelectedReplacement] = useState({});
   const [oosState, setOosState] = useState({}); // 0: Initial, 1: Call Customer, 2: Select Replacement
   
-  const initialPrep = { 'DIR-4401': 55, 'ZOM-1182': 45, 'SWG-9023': 45, 'ZOM-1183': 40, 'SWG-9022': 18, 'DIR-4402': 25 };
+  const initialPrep = { 'DIR-4401': 55, 'ZOM-1182': 45, 'SWG-9026': 45, 'ZOM-1183': 40, 'SWG-9022': 18, 'DIR-4402': 25 };
   const [prepTimes, setPrepTimes] = useState(initialPrep);
   const [basePrepTimes, setBasePrepTimes] = useState(initialPrep);
   
@@ -64,9 +67,18 @@ const OperationsCommandCenter = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setOrders(prevOrders => 
-        prevOrders.map(order => 
-          order.timeLeft != null && order.timeLeft > 0 ? { ...order, timeLeft: order.timeLeft - 1 } : order
-        )
+        prevOrders.map(order => {
+          if (order.timeLeft != null && order.timeLeft > 0) {
+            let nextState = order.lifecycle;
+            if (order.lifecycle === 'Cooking' && order.timeLeft <= 5 * 60) {
+               nextState = 'Ready';
+            }
+            return { ...order, lifecycle: nextState, timeLeft: order.timeLeft - 1 };
+          } else if (order.timeLeft != null && order.timeLeft <= 0 && (order.lifecycle === 'Cooking' || order.lifecycle === 'Ready')) {
+            return { ...order, lifecycle: 'Packed', timeLeft: 0 };
+          }
+          return order;
+        })
       );
     }, 1000);
     return () => clearInterval(timer);
@@ -86,10 +98,18 @@ const OperationsCommandCenter = () => {
             { id: 'DIR-4403', source: 'Direct', time: 'Just now', customer_name: 'vikram', phone: '+91 98765 43210', items: [{ id: 9, quantity: 1, name: 'Tandoori Chicken (Starter)', price: 220, isOOS: true }, { id: 10, quantity: 2, name: 'Mutton Biryani', price: 450, isOOS: false }], notes: '', timeLeft: 300, maxTime: 300, lifecycle: 'Incoming', batchMatch: null },
             { id: 'SWG-9026', source: 'Swiggy', time: 'Just now', customer_name: 'arjun', items: [{ id: 11, quantity: 1, name: 'Truffle Mushroom Burger', price: 320, isOOS: false }], notes: '', timeLeft: 270, maxTime: 300, lifecycle: 'Incoming', batchMatch: null }
           ]);
+          setExceptions(prev => [
+            ...prev,
+            { title: 'Tandoori Chicken (Starter)', status: 'Out of Stock', impact: 'Order #DIR-4403', action: 'Disable Platform Listing', type: 'ingredient' }
+          ]);
+          setRecommendedActions(prev => [
+            ...prev,
+            { title: 'Verify Tandoori Chicken availability', subtitle: 'Order #DIR-4403 contains OOS item', type: 'urgent' }
+          ]);
           const newPrep = { 'DIR-4403': 45, 'SWG-9026': 15 };
           setPrepTimes(prev => ({...prev, ...newPrep}));
           setBasePrepTimes(prev => ({...prev, ...newPrep}));
-          showNotification('New Orders', 'Two new orders have arrived!', 'info');
+          showNotification('Inventory Warning - Order #DIR-4403', 'Tandoori Chicken Starter is Out of Stock! (45m Prep Time)', 'error');
         }, 1500);
       }
     }
@@ -102,10 +122,10 @@ const OperationsCommandCenter = () => {
       if (incomingOrders.length === 0) {
         setWave3Triggered(true);
         
-        // Fast forward the B15 batch timer to simulate it being too late to merge
+        // Fast forward the B15 batch timer to simulate it being half-over
         setOrders(prev => prev.map(o => {
            if (o.lifecycle === 'Cooking' && o.batchMatch === 'B15') {
-              return { ...o, timeLeft: 300 };
+              return { ...o, timeLeft: o.maxTime / 2 - 10 };
            }
            return o;
         }));
@@ -143,13 +163,8 @@ const OperationsCommandCenter = () => {
            const prepTimeSecs = timeInMins * 60;
            updates.timeLeft = prepTimeSecs;
            updates.maxTime = prepTimeSecs;
-        } else if (targetState === 'Ready') {
-           updates.timeLeft = 5 * 60; 
-           updates.maxTime = 5 * 60;
-        } else if (targetState === 'Packed') {
-           updates.timeLeft = 2 * 60; 
-           updates.maxTime = 2 * 60;
         }
+        // No timer reset for Ready or Packed, they stay within the order time
         return { ...o, ...updates };
       }
       return o;
@@ -191,7 +206,7 @@ const OperationsCommandCenter = () => {
     
     // Check if it's too late to merge to an active batch
     const activeCookingMatch = order.batchMatch ? orders.find(o => o.lifecycle === 'Cooking' && o.batchMatch === order.batchMatch) : null;
-    const isTooLateToMerge = activeCookingMatch && activeCookingMatch.timeLeft <= 300;
+    const isTooLateToMerge = activeCookingMatch && activeCookingMatch.timeLeft < activeCookingMatch.maxTime / 2;
 
     // If it's too late to merge with the currently running batch, form a NEW batch opportunity (e.g. B15_2)
     const finalBatchMatch = isTooLateToMerge ? `${order.batchMatch}_2` : order.batchMatch;
@@ -211,16 +226,25 @@ const OperationsCommandCenter = () => {
     setRecommendedActions(prev => prev.filter(a => !a.title.includes(order.id)));
   };
 
+  const handoverOrder = (order) => {
+    setOrders(prev => prev.filter(o => o.id !== order.id));
+    setRiders(prev => prev.filter(r => r.orderId !== order.id));
+    setRecommendedActions(prev => prev.filter(a => !a.title.includes(order.id)));
+    showNotification('Dispatched', `Order #${order.id} handed over to rider successfully`, 'success');
+  };
+
   const replaceItem = (orderId, oldItemName, newItemName, newBatchMatch) => {
     setOrders(prev => prev.map(o => {
       if (o.id !== orderId) return o;
       return {
         ...o,
         batchMatch: newBatchMatch || o.batchMatch,
-        items: o.items.map(i => i.name === oldItemName ? { ...i, name: newItemName, isOOS: false } : i)
+        items: newItemName === 'No Substitute' 
+                 ? o.items.map(i => i.name === oldItemName ? { ...i, isCanceled: true, isOOS: false } : i)
+                 : o.items.map(i => i.name === oldItemName ? { ...i, name: newItemName, isOOS: false } : i)
       };
     }));
-    showNotification('Item Replaced', `Replaced ${oldItemName} with ${newItemName}`, 'info');
+    showNotification('Item Resolved', newItemName === 'No Substitute' ? `Canceled ${oldItemName} from order` : `Replaced ${oldItemName} with ${newItemName}`, 'info');
   };
 
   const handleExceptionAction = (exception) => {
@@ -343,9 +367,9 @@ const OperationsCommandCenter = () => {
           </button>
         </div>
         <div className="p-4 border-t border-slate-100 flex items-center overflow-hidden shrink-0">
-          <div className="w-10 h-10 shrink-0 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-600 text-sm mr-3">KM</div>
+          <div className="w-10 h-10 shrink-0 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-600 text-sm mr-3">R</div>
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-            <div className="text-sm font-bold text-slate-800 leading-tight">Kavya Menon</div>
+            <div className="text-sm font-bold text-slate-800 leading-tight">Ravi</div>
             <div className="text-xs text-slate-500 font-medium">Order Manager</div>
           </div>
         </div>
@@ -403,8 +427,8 @@ const OperationsCommandCenter = () => {
           {activeView === 'command-center' && (
             <div className="flex-1 flex flex-col min-w-0 overflow-auto">
             <div className="sticky top-0 z-30 bg-[#f8f9fa] pt-6 px-6 pb-4">
-              <Tabs value={filter} onValueChange={setFilter} className="w-full">
-                <TabsList className="flex flex-wrap bg-white border border-slate-200 p-1 gap-1 h-auto rounded-xl shadow-sm relative">
+              <Tabs value={filter} onValueChange={setFilter} className="w-full max-w-full overflow-hidden">
+                <TabsList className="flex flex-nowrap overflow-x-auto bg-white border border-slate-200 p-1 gap-1 h-auto rounded-xl shadow-sm relative scrollbar-hide w-full justify-start">
                   {['Incoming', 'Batch Suggestion', 'Cooking', 'Ready', 'Packed'].map(tab => {
                     const hasBatchOrders = orders.some(o => o.lifecycle === 'Batch Suggestion');
                     return (
@@ -414,7 +438,7 @@ const OperationsCommandCenter = () => {
                         className="relative rounded-lg px-6 py-2.5 font-bold text-sm text-slate-600 hover:text-slate-900 data-[state=active]:bg-[#0f172a] data-[state=active]:text-white data-[state=active]:shadow-md transition-all"
                       >
                         <div className="flex items-center">
-                          {tab}
+                          {tab} <span className="ml-1.5 text-xs font-semibold opacity-70">({tab === 'Batch Suggestion' ? batchOpportunities.length : orders.filter(o => o.lifecycle === tab).length})</span>
                           {tab === 'Incoming' && orders.filter(o => o.lifecycle === 'Incoming').length > 0 && (
                             <span className="ml-2 relative flex h-2.5 w-2.5">
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -435,8 +459,8 @@ const OperationsCommandCenter = () => {
               </Tabs>
             </div>
             
-            <div className="p-6 pt-2">
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 items-start content-start">
+            <div className="p-6 pt-2 h-full overflow-y-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start content-start pb-20">
                 {filteredOrders.length === 0 ? (
                   <div className="col-span-full py-20 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
                     <p className="text-slate-500 font-medium">No orders in {filter} status.</p>
@@ -475,10 +499,10 @@ const OperationsCommandCenter = () => {
                             </div>
                             
                             <div className="flex gap-3">
-                               <Button onClick={() => batch.orders.forEach(o => advanceLifecycle(o.id, 'Cooking'))} className="flex-1 font-semibold h-10 bg-[#0f172a] hover:bg-[#1e293b] text-white shadow-sm">
-                                 <Layers className="w-4 h-4 mr-2"/> Create Batch — {batch.name}
+                               <Button onClick={() => batch.orders.forEach(o => advanceLifecycle(o.id, 'Cooking'))} className="flex-1 font-semibold h-10 bg-[#0f172a] hover:bg-[#1e293b] text-white shadow-sm overflow-hidden">
+                                 <Layers className="w-4 h-4 mr-2 shrink-0"/> <span className="truncate">Create Batch — {batch.name}</span>
                                </Button>
-                               <Button onClick={() => batch.orders.forEach(o => advanceLifecycle(o.id, 'Cooking'))} variant="outline" className="font-semibold h-10 border-slate-200 text-slate-600 hover:bg-slate-100">Dismiss</Button>
+                               <Button onClick={() => batch.orders.forEach(o => advanceLifecycle(o.id, 'Cooking'))} variant="outline" className="font-semibold h-10 w-auto px-5 shrink-0 border-slate-200 text-slate-600 hover:bg-slate-100">Dismiss</Button>
                             </div>
                           </div>
                         </div>
@@ -503,7 +527,7 @@ const OperationsCommandCenter = () => {
                       {/* Top Source Badge from Figma - strict rectangle tag */}
                       {order.lifecycle === 'Incoming' && (
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
-                           <div className={`px-4 py-1 text-[11px] font-bold uppercase tracking-widest ${getSourceStyle(order.source).bg} ${getSourceStyle(order.source).text} shadow-sm rounded-none border border-black/5`}>
+                           <div className={`px-4 py-1 text-[11px] font-bold uppercase tracking-widest ${getSourceStyle(order.source).bg} ${getSourceStyle(order.source).text} shadow-sm rounded-none border border-black/5 flex items-center gap-1.5`}>
                              {order.source}
                            </div>
                         </div>
@@ -532,24 +556,23 @@ const OperationsCommandCenter = () => {
                         )}
                         
                         {/* Order Items */}
-                        {order.lifecycle !== 'Batch Suggestion' && (
-                          <>
-                            <div className="space-y-3 mb-6">
-                              {order.items.map((item, idx) => (
-                                <div key={idx} className="flex flex-col">
-                                  <div className={`flex justify-between items-center ${item.isOOS ? 'bg-[#fef2f2] -mx-5 px-5 py-2' : ''}`}>
-                                    <div className={`font-medium text-[15px] ${item.isOOS ? 'text-[#b91c1c]' : 'text-slate-700'}`}>{item.quantity}x {item.name}</div>
-                                    <div className="flex items-center gap-2">
-                                      <div className={`font-medium text-[15px] ${item.isOOS ? 'text-slate-400 line-through' : 'text-slate-700'}`}>₹{item.price.toLocaleString()}</div>
-                                    </div>
-                                  </div>
+                        <div className="space-y-2 mb-3">
+                          {order.items.map((item, idx) => (
+                            <div key={idx} className="flex flex-col">
+                              <div className={`flex justify-between items-center ${item.isOOS ? 'bg-[#fef2f2] -mx-5 px-5 py-2' : ''}`}>
+                                <div className={`font-medium text-[15px] flex items-center ${item.isOOS ? 'text-[#b91c1c]' : item.isCanceled ? 'text-slate-400 line-through' : 'text-slate-700'}`}>
+                                  {item.quantity}x {item.name}
+                                  {item.isCanceled && <span className="ml-2 text-[10px] font-bold text-red-500 uppercase tracking-wider not-italic no-underline border border-red-200 bg-red-50 px-1.5 py-0.5 rounded">Canceled</span>}
                                 </div>
-                              ))}
+                                <div className="flex items-center gap-2">
+                                  <div className={`font-medium text-[15px] ${item.isOOS || item.isCanceled ? 'text-slate-400 line-through' : 'text-slate-700'}`}>₹{item.price.toLocaleString()}</div>
+                                </div>
+                              </div>
                             </div>
-                            
-                            <div className="h-px bg-slate-200 w-full mb-4"></div>
-                          </>
-                        )}
+                          ))}
+                        </div>
+                        
+                        <div className="h-px bg-slate-200 w-full mb-2"></div>
 
                         {/* Contextual Actions based on Lifecycle */}
                         {order.lifecycle === 'Incoming' && (
@@ -607,7 +630,8 @@ const OperationsCommandCenter = () => {
                                           setSelectedReplacement(prev => ({...prev, [order.id]: replacement}));
                                           
                                           let addedTime = 15;
-                                          if (replacement.includes('Biryani')) addedTime = 20;
+                                          if (replacement === 'No Substitute') addedTime = 0;
+                                          else if (replacement.includes('Biryani')) addedTime = 20;
                                           else if (replacement.includes('Masala')) addedTime = 25;
                                           else if (replacement.includes('Burger') || replacement.includes('Fries')) addedTime = 15;
                                           else if (replacement.includes('Bowl')) addedTime = 10;
@@ -617,24 +641,25 @@ const OperationsCommandCenter = () => {
                                         }}
                                       >
                                         <option value="" disabled>Select a substitute from the SAME station...</option>
+                                        <option value="No Substitute">No Substitute (Cancel Item)</option>
                                         {getStationForOrder(order) === 'Main Hot Station' && (
                                           <>
-                                            <option value="Chicken Biryani (L)">Chicken Biryani (L) (₹425)</option>
-                                            <option value="Mutton Biryani">Mutton Biryani (₹450)</option>
-                                            <option value="Kaju Butter Masala">Kaju Butter Masala (₹250)</option>
+                                            <option value="Chicken Biryani (L)">Chicken Biryani (L) (₹425) - 20m prep</option>
+                                            <option value="Mutton Biryani">Mutton Biryani (₹450) - 20m prep</option>
+                                            <option value="Kaju Butter Masala">Kaju Butter Masala (₹250) - 25m prep</option>
                                           </>
                                         )}
                                         {getStationForOrder(order) === 'Fry & Grill Station' && (
                                           <>
-                                            <option value="Smash Burger">Smash Burger (₹280)</option>
-                                            <option value="Loaded Fries">Loaded Fries (₹180)</option>
-                                            <option value="Truffle Mushroom Burger">Truffle Mushroom Burger (₹320)</option>
+                                            <option value="Smash Burger">Smash Burger (₹280) - 15m prep</option>
+                                            <option value="Loaded Fries">Loaded Fries (₹180) - 15m prep</option>
+                                            <option value="Truffle Mushroom Burger">Truffle Mushroom Burger (₹320) - 15m prep</option>
                                           </>
                                         )}
                                         {getStationForOrder(order) === 'Assembly Station' && (
                                           <>
-                                            <option value="Quinoa Power Bowl">Quinoa Power Bowl (₹280)</option>
-                                            <option value="Teriyaki Chicken Bowl">Teriyaki Chicken Bowl (₹310)</option>
+                                            <option value="Quinoa Power Bowl">Quinoa Power Bowl (₹280) - 10m prep</option>
+                                            <option value="Teriyaki Chicken Bowl">Teriyaki Chicken Bowl (₹310) - 10m prep</option>
                                           </>
                                         )}
                                       </select>
@@ -648,7 +673,10 @@ const OperationsCommandCenter = () => {
                                           let nextState = 'Cooking';
                                           let newBatchMatch = null;
                                           
-                                          if (replacement.includes('Biryani')) {
+                                          if (replacement === 'No Substitute') {
+                                              nextState = 'Cooking';
+                                              newBatchMatch = null;
+                                          } else if (replacement.includes('Biryani')) {
                                               newBatchMatch = 'B15';
                                               nextState = 'Batch Suggestion';
                                           } else if (replacement.includes('Masala')) {
@@ -697,10 +725,28 @@ const OperationsCommandCenter = () => {
                               <div className="flex flex-col mt-4">
                                 {(() => {
                                   const activeCookingMatch = order.batchMatch ? orders.find(o => o.lifecycle === 'Cooking' && o.batchMatch === order.batchMatch) : null;
-                                  const isTooLateToMerge = activeCookingMatch && (Math.floor((activeCookingMatch.maxTime - activeCookingMatch.timeLeft) / 60) > 10 || activeCookingMatch.timeLeft <= 300);
+                                  const isTooLateToMerge = activeCookingMatch && activeCookingMatch.timeLeft < activeCookingMatch.maxTime / 2;
                                   
                                   if (activeCookingMatch) {
                                     const batchOrders = orders.filter(o => o.lifecycle === 'Cooking' && o.batchMatch === activeCookingMatch.batchMatch);
+                                    
+                                    if (isTooLateToMerge) {
+                                      const elapsedMins = Math.floor((activeCookingMatch.maxTime - activeCookingMatch.timeLeft) / 60);
+                                      return (
+                                        <div className="bg-slate-50 border border-slate-200 rounded p-4 mb-2 mt-4 flex flex-col items-center justify-center text-center">
+                                          <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mb-2">
+                                            <AlertCircle className="w-5 h-5 text-red-600" />
+                                          </div>
+                                          <div className="text-sm font-bold text-slate-700 mb-1">
+                                            Batch {order.batchMatch} is already cooking
+                                          </div>
+                                          <div className="text-xs font-medium text-slate-500 mb-3 px-2">
+                                            It's almost {elapsedMins} minutes over, so we can't add these orders to that batch.
+                                          </div>
+                                        </div>
+                                      );
+                                    }
+                                    
                                     const matchedItem = batchOrders[0]?.items.find(i => i.name.includes('Biryani') || i.name.includes('Burger') || i.name.includes('Fries') || i.name.includes('Masala') || i.name.includes('Bowl'));
                                     const itemName = matchedItem ? matchedItem.name : 'Items';
                                     const totalQty = batchOrders.reduce((sum, o) => sum + (o.items.find(i => i.name === itemName)?.quantity || 0), 0);
@@ -751,23 +797,34 @@ const OperationsCommandCenter = () => {
                                   return null;
                                 })()}
                                 
-                                <div className="flex gap-3 border-t border-slate-100 pt-4 mt-auto">
-                                  <Button variant="outline" className="font-semibold h-12 w-32 text-[#cb202d] border-[#cb202d] hover:bg-[#cb202d]/5 bg-white shadow-sm text-base rounded-lg" onClick={() => rejectOrder(order)}>Reject</Button>
-                                  <Button 
-                                    onClick={() => {
-                                       if (batchSelections[order.id]) {
-                                           mergeOrderToCooking(order);
-                                       } else {
-                                           acceptOrder(order);
-                                       }
-                                    }}
-                                    className="flex-1 relative overflow-hidden h-12 bg-[#0a5c4b] hover:bg-[#08483b] text-white shadow-sm rounded-lg border-0"
-                                  >
-                                    <div className="absolute left-0 top-0 bottom-0 bg-[#0f8b72] transition-all duration-1000 ease-linear" style={{ width: `${(order.timeLeft / order.maxTime) * 100}%` }}></div>
-                                    <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
-                                       Accept Order ({formatTime(order.timeLeft)})
-                                    </div>
-                                  </Button>
+                                <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 mt-auto">
+                                  {order.source === 'Direct' && (
+                                    <Button 
+                                      variant="outline"
+                                      onClick={() => showNotification('Calling Customer', `Calling ${order.customer_name}...`, 'info')}
+                                      className="font-semibold h-12 w-full flex items-center justify-center text-blue-600 border-blue-200 hover:bg-blue-50 bg-white shadow-sm rounded-lg"
+                                    >
+                                      <Phone className="w-4 h-4 mr-2" /> Call Customer
+                                    </Button>
+                                  )}
+                                  <div className="flex gap-3">
+                                    <Button variant="outline" className="font-semibold h-12 w-32 shrink-0 text-[#cb202d] border-[#cb202d] hover:bg-[#cb202d]/5 bg-white shadow-sm text-base rounded-lg" onClick={() => rejectOrder(order)}>Reject</Button>
+                                    <Button 
+                                      onClick={() => {
+                                         if (batchSelections[order.id]) {
+                                             mergeOrderToCooking(order);
+                                         } else {
+                                             acceptOrder(order);
+                                         }
+                                      }}
+                                      className="flex-1 relative overflow-hidden h-12 bg-[#0a5c4b] hover:bg-[#08483b] text-white shadow-sm rounded-lg border-0"
+                                    >
+                                      <div className="absolute left-0 top-0 bottom-0 bg-[#0f8b72] transition-all duration-1000 ease-linear" style={{ width: `${(order.timeLeft / order.maxTime) * 100}%` }}></div>
+                                      <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
+                                         Accept Order ({formatTime(order.timeLeft)})
+                                      </div>
+                                    </Button>
+                                  </div>
                                 </div>
                               </div>
                             )}
@@ -780,97 +837,69 @@ const OperationsCommandCenter = () => {
                           return (
                             <div className="flex flex-col gap-2 mt-4">
                               {activeCookingMatch ? (
-                                <>
-                                  <div className="bg-amber-50 border border-amber-200 rounded p-3 mb-2">
-                                    <div className="flex items-start gap-2 text-amber-800">
-                                      <Lightbulb className="w-4 h-4 mt-0.5 shrink-0" />
-                                      <div className="text-xs font-medium">
-                                        <span className="font-bold">Batch {order.batchMatch}</span> is currently cooking. Started <span className="font-bold">{activeCookingMatch.time}</span>. Add this order to the active batch?
-                                      </div>
+                                <button 
+                                  onClick={() => advanceLifecycle(order.id, 'Cooking')} 
+                                  className="w-full text-left bg-amber-50 hover:bg-amber-100 transition-all border border-amber-300 rounded-lg p-3 flex flex-col gap-1.5 cursor-pointer shadow-sm group"
+                                >
+                                  <div className="flex items-start gap-2 text-amber-900">
+                                    <Lightbulb className="w-5 h-5 mt-0.5 shrink-0 text-amber-600" />
+                                    <div className="text-sm font-medium">
+                                      <span className="font-bold text-amber-700">Batch {order.batchMatch} ({activeCookingMatch.items[0].name})</span> is currently cooking. Add this item to the active batch?
                                     </div>
                                   </div>
-                                  <Button 
-                                    onClick={() => advanceLifecycle(order.id, 'Cooking')} 
-                                    className="w-full relative overflow-hidden h-12 bg-amber-500 hover:bg-amber-600 text-white shadow-sm rounded-lg border-0"
-                                  >
-                                     <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
-                                        Add to Active Batch {order.batchMatch}
-                                     </div>
-                                  </Button>
-                                </>
+                                  <div className="text-[11px] font-bold text-amber-700 uppercase tracking-wider group-hover:text-amber-900 flex items-center pl-7">
+                                    Tap to Add to Batch <Plus className="w-3.5 h-3.5 ml-1" />
+                                  </div>
+                                </button>
                               ) : (
-                                <>
-                                  <Button 
-                                    onClick={() => advanceLifecycle(order.id, 'Cooking')} 
-                                    className="w-full relative overflow-hidden h-12 bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm rounded-lg border-0"
-                                  >
-                                     <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
-                                        Start Cooking (No Batch)
-                                     </div>
-                                  </Button>
-                                  <p className="text-[10px] text-center text-slate-500 font-medium">Waiting for batch opportunities...</p>
-                                </>
+                                <button 
+                                  onClick={() => advanceLifecycle(order.id, 'Cooking')} 
+                                  className="w-full text-left bg-indigo-50 hover:bg-indigo-100 transition-all border border-indigo-200 rounded-lg p-3 flex flex-col gap-1.5 cursor-pointer shadow-sm group"
+                                >
+                                  <div className="flex items-start gap-2 text-indigo-900">
+                                    <Layers className="w-5 h-5 mt-0.5 shrink-0 text-indigo-600" />
+                                    <div className="text-sm font-medium">
+                                      Start Cooking (No Batch)
+                                    </div>
+                                  </div>
+                                  <div className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider group-hover:text-indigo-800 flex items-center pl-7">
+                                    Waiting for batch opportunities... <Plus className="w-3.5 h-3.5 ml-1" />
+                                  </div>
+                                </button>
                               )}
                             </div>
                           );
                         })()}
 
-                        {order.lifecycle === 'Cooking' && (
-                          <div className="flex flex-col gap-2">
-                            <Button 
-                              onClick={() => advanceLifecycle(order.id, 'Ready')} 
-                              className="w-full relative overflow-hidden h-12 bg-amber-800 hover:bg-amber-900 text-white shadow-sm rounded-lg border-0"
-                            >
-                               <div className="absolute left-0 top-0 bottom-0 bg-amber-500 transition-all duration-1000 ease-linear" style={{ width: `${(order.timeLeft / order.maxTime) * 100}%` }}></div>
-                               <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
-                                  Mark Ready ({formatTime(order.timeLeft)})
+                        {(order.lifecycle === 'Cooking' || order.lifecycle === 'Ready') && (
+                          <div className="flex flex-col gap-2 mt-1">
+                            <div className={`w-full relative overflow-hidden h-12 shadow-sm rounded-lg flex items-center justify-center border ${order.lifecycle === 'Ready' ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900'}`}>
+                               <div className={`absolute left-0 top-0 bottom-0 transition-all duration-1000 ease-linear ${order.lifecycle === 'Ready' ? 'bg-emerald-200' : 'bg-amber-200'}`} style={{ width: `${(1 - (order.timeLeft / order.maxTime)) * 100}%` }}></div>
+                               <div className="relative z-10 flex items-center justify-center w-full px-4 text-sm font-bold tracking-wide">
+                                  {order.lifecycle === 'Ready' ? <CheckCircle2 className="w-4 h-4 mr-2 text-emerald-600 shrink-0" /> : <Flame className="w-4 h-4 mr-2 text-amber-600 shrink-0" />}
+                                  {order.lifecycle === 'Ready' ? 'Ready' : 'Cooking'}: {formatTime(order.timeLeft)} Remaining
                                </div>
-                            </Button>
-                          </div>
-                        )}
-
-                        {order.lifecycle === 'Ready' && (
-                          <div className="flex flex-col gap-3 border-t border-slate-100 pt-3">
-                            <div className="flex justify-between items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-                              <span className="text-xs font-bold text-slate-500 uppercase">Rider OTP</span>
-                              <span className="text-xl font-bold tracking-widest text-slate-800">8291</span>
                             </div>
-                            <Button 
-                              onClick={() => advanceLifecycle(order.id, 'Packed')} 
-                              className="w-full relative overflow-hidden h-12 bg-purple-600 hover:bg-purple-700 text-white shadow-md rounded-lg border-0"
-                            >
-                              <div className="absolute left-0 top-0 bottom-0 bg-purple-500 transition-all duration-1000 ease-linear" style={{ width: `${(order.timeLeft / order.maxTime) * 100}%` }}></div>
-                              <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
-                                Pack Order ({formatTime(order.timeLeft)})
-                              </div>
-                            </Button>
                           </div>
                         )}
 
                         {order.lifecycle === 'Packed' && (
-                          <div className="flex flex-col gap-3 border-t border-slate-100 pt-3">
-                            <div className="flex justify-between items-center">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center">
-                                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rider" alt="Rider" className="w-8 h-8 rounded-full" />
-                                </div>
-                                <div>
-                                  <div className="text-sm font-bold text-slate-800">Raju (Rider)</div>
-                                  <div className="text-xs font-medium text-slate-500">Arriving in 2 mins</div>
-                                </div>
-                              </div>
-                              <Button size="icon" variant="outline" className="rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 bg-blue-50/50 h-10 w-10">
-                                <Phone className="w-4 h-4" />
-                              </Button>
+                          <div className="flex flex-col gap-2 mt-1">
+                            <div className="text-center mb-1 text-xs font-bold text-slate-500">
+                               Rider OTP: <span className="text-slate-800 tracking-wider">8291</span>
                             </div>
                             <Button 
-                              onClick={() => rejectOrder(order)} 
-                              className="w-full relative overflow-hidden h-12 bg-blue-800 hover:bg-blue-900 text-white shadow-md rounded-lg border-0 mt-2"
+                              onClick={() => showNotification('Calling Rider', `Connecting to rider for order #${order.id}...`, 'info')}
+                              className="w-full h-10 bg-[#0f8b72] hover:bg-[#0a5c4b] text-white shadow-sm rounded-lg border-0 text-sm font-bold tracking-wide flex items-center justify-center"
                             >
-                              <div className="absolute left-0 top-0 bottom-0 bg-blue-600 transition-all duration-1000 ease-linear" style={{ width: `${(order.timeLeft / order.maxTime) * 100}%` }}></div>
-                              <div className="relative z-10 flex items-center justify-center w-full px-4 text-base font-bold tracking-wide">
-                                <CheckCircle2 className="w-5 h-5 mr-2" /> Handover to Rider ({formatTime(order.timeLeft)})
-                              </div>
+                               <Phone className="w-3.5 h-3.5 mr-2 shrink-0" /> Call to Rider
+                            </Button>
+                            
+                            <Button 
+                              onClick={() => handoverOrder(order)} 
+                              className="w-full h-10 bg-blue-800 hover:bg-blue-900 text-white shadow-sm rounded-lg border-0 text-sm font-bold tracking-wide flex items-center justify-center"
+                            >
+                              <CheckCircle2 className="w-3.5 h-3.5 mr-2 shrink-0" /> Handover to Rider
                             </Button>
                           </div>
                         )}

@@ -4,6 +4,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Medium density bucket = ~160 DPI = 1x or 100% */
+@media screen and (-webkit-min-device-pixel-ratio: 1), screen and (min-resolution: 160dpi) {
+  html { font-size: 16px; }
+}
+
+/* High density bucket = ~240 DPI = 1.5x or 150% */
+@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-resolution: 240dpi) {
+  html { font-size: 14px; }
+}
+
+/* Extra-high density bucket = ~320 DPI = 2x or 200% */
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 320dpi) {
+  html { font-size: 12px; }
+}
+
+/* Extra-extra-high density bucket = ~480 DPI = 3x or 300% */
+@media screen and (-webkit-min-device-pixel-ratio: 3), screen and (min-resolution: 480dpi) {
+  html { font-size: 10px; }
+}
+
+/* Extra-extra-extra-high density bucket = ~640 DPI = 4x or 400% */
+@media screen and (-webkit-min-device-pixel-ratio: 4), screen and (min-resolution: 640dpi) {
+  html { font-size: 8px; }
+}
+
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
   overflow-x: clip;
